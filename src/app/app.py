@@ -101,3 +101,6 @@ if selected_file:
 
     with tabs[1]:
         st.code(content, language=file_ext)
+
+
+#python -m streamlit run src/app/app.py
