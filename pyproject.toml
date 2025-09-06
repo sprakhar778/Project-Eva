@@ -1,0 +1,18 @@
+[project]
+name = "project-eva"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "dotenv>=0.9.9",
+    "ipykernel>=6.30.1",
+    "langchain>=0.3.27",
+    "langchain-community>=0.3.29",
+    "langchain-core>=0.3.75",
+    "langchain-groq>=0.3.7",
+    "langchain-openai>=0.3.32",
+    "langgraph>=0.6.6",
+    "rich>=14.1.0",
+    "streamlit>=1.49.1",
+]
