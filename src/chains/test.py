@@ -1,58 +1,93 @@
+# 
+# 
+# 
+# 
+# 
 from langgraph.prebuilt import create_react_agent
 from src.tools.general_file_tools import write_file, read_file, run_cmd, list_files
 from src.llm.llm_providers import get_groq_model
-
 
 tools = [write_file, read_file, run_cmd, list_files]
 
 agent = create_react_agent(
     model=get_groq_model(),
     tools=tools,
+   
 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+tasks = [
+    "Check if `src/components/Calculator.js` exists. If yes, read it; if not, create it.",
+    "Generate React Calculator component with TailwindCSS styling neon theme.",
+    "Update `src/App.js` to import and render Calculator, center with Tailwind.",
+    "Validate Tailwind responsiveness and colors.",
+    "Optional: Add keyboard support and running expression display."
+]
 response = agent.invoke({
     "messages": [
-        {"role": "user", "content": """
-You already have a React + TailwindCSS project set up. Do NOT initialize a new project or reinstall dependencies.
+        {"role": "user", "content": f"""
+        You already have a React + TailwindCSS project. Do NOT reinstall dependencies.
 
-Task:
+        Task breakdown:
+        {chr(10).join([f'{i+1}. {t}' for i,t in enumerate(tasks)])}
 
-1. Create a **Calculator** component in `src/components/Calculator.js` using React hooks:
-   - Display area for input and result.
-   - Buttons for digits `0-9`, operations `+`, `-`, `*`, `/`, decimal `.`, `C` (clear), and `=` (calculate).
-   - Implement calculation logic and clear functionality.
-   - Style with Tailwind: grid layout, distinct colors for digits/operations, rounded buttons, hover effects, responsive.
-
-2. Update `src/App.js` to import and render `Calculator`:
-   - Center the calculator with Tailwind (`flex`, `justify-center`, `items-center`).
-   - Add padding/margin for clean layout.
-
-3. Tailwind best practices:
-   - Responsive for mobile and desktop.
-   - Clear color contrast.
-   - Smooth hover/focus transitions.
-
-Optional: Show running expression while typing, add keyboard support.
-
-Output must be fully functional in React + Tailwind, using **plain JavaScript (.js)** files.
-"""}
+        Output fully functional plain JavaScript (.js) React + Tailwind components.
+        """}
     ]
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+#from langgraph.prebuilt import create_react_agent
+# from src.tools.general_file_tools import write_file, read_file, run_cmd, list_files
+# from src.llm.llm_providers import get_groq_model
+
+
+# tools = [write_file, read_file, run_cmd, list_files]
+
+# agent = create_react_agent(
+#     model=get_groq_model(),
+#     tools=tools,
+# )
+
+
+
+# response = agent.invoke({
+#     "messages": [
+#         {"role": "user", "content": """
+# You already have a React + TailwindCSS project set up. Do NOT initialize a new project or reinstall dependencies.
+
+# Task:
+
+# 1. Create a **Calculator** component in `src/components/Calculator.js` using React hooks:
+#    - Display area for input and result.
+#    - Buttons for digits `0-9`, operations `+`, `-`, `*`, `/`, decimal `.`, `C` (clear), and `=` (calculate).
+#    - Implement calculation logic and clear functionality.
+#    - Style with Tailwind: grid layout, distinct colors for digits/operations, rounded buttons, hover effects, responsive.
+
+# 2. Update `src/App.js` to import and render `Calculator`:
+#    - Center the calculator with Tailwind (`flex`, `justify-center`, `items-center`).
+#    - Add padding/margin for clean layout.
+
+# 3. Tailwind best practices:
+#    - Responsive for mobile and desktop.
+#    - Clear color contrast.
+#    - Smooth hover/focus transitions.
+
+# Optional: Show running expression while typing, add keyboard support.
+
+# Output must be fully functional in React + Tailwind, using **plain JavaScript (.js)** files.
+# """}
+#     ]
+# })
 
 
 
