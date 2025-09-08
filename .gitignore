@@ -9,3 +9,10 @@ wheels/
 # Virtual environments
 .venv
 .env
+ 
+*/node_modules/
+npm-debug.log
+**/node_modules/
+
+# Ignore all npm debug logs
+npm-debug.log*
